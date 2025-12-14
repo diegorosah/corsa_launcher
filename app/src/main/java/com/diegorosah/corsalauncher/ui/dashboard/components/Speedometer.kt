@@ -1,5 +1,7 @@
 package com.diegorosah.corsalauncher.ui.dashboard.components
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
@@ -8,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -28,6 +31,21 @@ fun Speedometer(
     maxSpeed: Int = 240,
     modifier: Modifier = Modifier
 ) {
+    val animatedSpeed by animateFloatAsState(
+        targetValue = currentSpeed.toFloat(),
+        animationSpec = tween(durationMillis = 500),
+        label = "SpeedAnimation"
+    )
+
+    val progress = (animatedSpeed / maxSpeed).coerceIn(0f, 1f)
+    
+    // Dynamic color: Green -> Yellow -> Red
+    val arcColor = when {
+        animatedSpeed < maxSpeed * 0.5 -> Color(0xFF00FF41) // Green
+        animatedSpeed < maxSpeed * 0.8 -> Color(0xFFFFD700) // Yellow
+        else -> Color(0xFFFF0000) // Red
+    }
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.aspectRatio(1f)
@@ -50,9 +68,8 @@ fun Speedometer(
             )
 
             // Active Arc
-            val progress = (currentSpeed.toFloat() / maxSpeed).coerceIn(0f, 1f)
             drawArc(
-                color = Color(0xFF00FF41), // Neon Green
+                color = arcColor,
                 startAngle = startAngle,
                 sweepAngle = sweepAngle * progress,
                 useCenter = false,
@@ -88,7 +105,7 @@ fun Speedometer(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "$currentSpeed",
+                text = "${animatedSpeed.toInt()}",
                 fontSize = 64.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground

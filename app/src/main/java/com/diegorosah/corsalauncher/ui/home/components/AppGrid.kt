@@ -35,7 +35,10 @@ fun AppGrid(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.fillMaxSize()
     ) {
-        items(apps) { app ->
+        items(
+            items = apps,
+            key = { app -> app.packageName }
+        ) { app ->
             AppItem(app = app, onClick = { onAppClick(app.packageName) })
         }
     }

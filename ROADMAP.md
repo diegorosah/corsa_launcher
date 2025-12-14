@@ -201,10 +201,10 @@ Roadmap de desenvolvimento do **Corsa Launcher**, dividido em 6 fases ao longo d
 ### Tarefas:
 
 #### 5.1 Animações e Transições
-- [ ] Adicionar animações de entrada/saída para widgets
+- [x] Adicionar animações de entrada/saída para widgets (Cards de alerta)
 - [ ] Transição suave ao abrir apps
 - [ ] Animação de loading enquanto carrega apps
-- [ ] Efeito visual ao mudar de velocidade
+- [x] Efeito visual ao mudar de velocidade (Velocímetro dinâmico)
 - [ ] Animação de pulsação para alertas
 
 #### 5.2 Otimização de Performance
