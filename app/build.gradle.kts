@@ -5,6 +5,10 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 android {
     namespace = "com.diegorosah.corsalauncher"
     compileSdk = 34
@@ -39,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
