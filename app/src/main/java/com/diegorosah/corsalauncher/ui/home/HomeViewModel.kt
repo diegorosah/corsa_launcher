@@ -61,7 +61,7 @@ class HomeViewModel @Inject constructor(
             _displayedApps.value = _allApps.value
         } else {
             _displayedApps.value = _allApps.value.filter { 
-                it.label.contains(query, ignoreCase = true) 
+                it.name.contains(query, ignoreCase = true) 
             }
         }
     }

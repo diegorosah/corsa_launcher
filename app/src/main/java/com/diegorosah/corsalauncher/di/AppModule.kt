@@ -32,7 +32,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMediaRepository(@ApplicationContext context: Context): MediaRepository {
-        return MediaRepositoryImpl(context)
+        return MediaRepositoryImpl()
     }
 
     @Provides
